@@ -1,0 +1,23 @@
+{
+  "name": "expressapi",
+  "version": "1.0.0",
+  "description": "Start inicial de um projeto mvc para criação de APIs rest utilizando expresss",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvtuta/expressApi.git"
+  },
+  "author": "jvtuta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jvtuta/expressApi/issues"
+  },
+  "homepage": "https://github.com/jvtuta/expressApi#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
