@@ -1,11 +1,9 @@
 import { Router } from "express";
+import exampleController from '../Controllers/exampleController.js'
+
 const router = Router()
 
-
-const index =  router.get('/', function ( req, res, next) {
-    console.log('teste');
-
-})
+const index =  router.get('/', exampleController)
 
 export default index
 
