@@ -2,10 +2,12 @@
   "name": "expressapi",
   "version": "1.0.0",
   "description": "Start inicial de um projeto mvc para criação de APIs rest utilizando expresss",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node -r dotenv/config app.js",
     "test": "npm run test"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jvtuta/expressApi.git"
@@ -18,6 +20,7 @@
   "homepage": "https://github.com/jvtuta/expressApi#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mysql2": "^2.3.2"
   }
 }
