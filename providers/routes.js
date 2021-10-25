@@ -1,4 +1,4 @@
-import index from '../app/routes/index.js'
+import index from '../routes/index.js'
 
 //adicionar rotas a serem providas na aplicação
 const routes = (app) => {
