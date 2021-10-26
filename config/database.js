@@ -15,18 +15,3 @@ export default function db() {
 }
 
 
-export const query = async (q) => {
-    return Promise.resolve(
-        await db().getConnection()
-            .then(conn => {
-                const res = conn.query(q)
-
-                conn.release()
-                return res
-            })
-            .then(([rows]) => rows)
-            .catch(err => {
-                throw err
-            })
-    )
-}
