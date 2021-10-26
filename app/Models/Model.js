@@ -3,11 +3,12 @@ import query from "../../providers/query.js"
 
 
 export default function Model() {
-    let table
+    let table 
     let relationship
-    
-    return {
+    let res
 
+    return {
+        
 
         __set_table (set_table) {
             return table = set_table
@@ -17,30 +18,42 @@ export default function Model() {
             return relationship = set_relationship
         },
 
-        all: () => {
-            if(!table) throw 'table not defined' 
-            return query('select * from ' + table)
+        get() {
+            return res
+        },
+
+        all () {
+            if(!table) throw 'table not defined'
+
+            res = query('select * from ' + table)
+            return this
         },
     
-        save: (values) => {
+        save (values) {
             if(!table) throw 'table not defined'
+
             const val = [...Object.values(values)].map((value)=>{
                 if(typeof value === 'string') return "'"+value+"'"
                 return value
             })                        
-            query('insert into '+table+`(${[...Object.keys(values)]}) values(${[...val]})`)
+            res = query('insert into '+table+`(${[...Object.keys(values)]}) values(${[...val]})`)
+            return this
         },
 
-        update: (values, id) => {
+        update (values, id) {
             if(!table) throw 'table not defined'
+
             if( id === undefined ) return 'id do registro não especificado, operação abortada!';
+
             const columns = Object.keys(values).map((key)=>{                            
                 return key+'='+"'"+values[key]+"'";     
             })           
             // query('update '+table+string)
             try {
                 query('update '+table+' set '+columns.join()+'where id='+id+';') 
-                return 'registro de id='+id+' atualizado com sucesso!'  
+                
+                res = 'registro de id='+id+' atualizado com sucesso!'  
+                return this
             } catch ( err ) {
                 throw err
             }
