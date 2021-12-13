@@ -28,15 +28,25 @@ export default function Model() {
             res = query('select * from ' + table)
             return this
         },
-    
-        save (values) {
+        
+        save (/* Objeto com key(coluna da tabela) e valor(dado))*/ values) {
             if(!table) throw 'table not defined'
-
+            
             const val = [...Object.values(values)].map((value)=>{
                 if(typeof value === 'string') return "'"+value+"'"
                 return value
-            })                        
-            res = query('insert into '+table+`(${[...Object.keys(values)]}) values(${[...val]})`)
+                
+            })                 
+            // res = query(`"insert into "`+table+`
+            // (${[...Object.keys(values)]})
+            // values(${[...val]})`)
+            query(
+                `
+                    insert into 
+                        ${table}(${[...Object.keys(values)]})
+                    values(${[...val]})
+                `
+            )
             return this
         },
 

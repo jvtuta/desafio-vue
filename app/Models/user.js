@@ -2,7 +2,7 @@ import Model from "./Model.js"
 
 
 
-export default function user() {
+export default function User() {
     //attrs
 
     const model = Model()
