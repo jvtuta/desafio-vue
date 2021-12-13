@@ -17,6 +17,20 @@
         5° Redirecionar para a url original quando a url encurtada for visitada
     </p>
     <p>
-        
+
     </p>
+</div>
+
+<div>
+    <h2>Configurações</h2>
+        <p>1 ° Criar um arquivo .env seguindo o exemplo do .env-example</p>
+        <p>2 ° Criar banco de dados para armazenamento dos usuários registrados e urls cadastradas</p>
+        <p>3 ° Criar tabelas no bd conforme documentação</p>
+</div>
+
+
+<div>
+    <p>Tabelas</p>
+    <p>1° users(nome) </p>
+    <p>2° urls</p>
 </div>
