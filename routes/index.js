@@ -11,15 +11,16 @@ function routes(app) {
     const { get, post } = urlController()
 
     const index = router.get('/', homePageController)
-    const indexUrl = router.get('/url', get)
-    const postUrl = router.post('/url', post)
-
+    const indexUrl = router.get('/api/v1/url', get)
+    const postUrl = router.post('/api/v1/url', post)
+    const auth = router.post('/api/v1/auth', users)
+    
 
     
     app.use('/', index)
     app.use('/url', postUrl)
     app.use('/url', indexUrl)
-
+    app.use('/api/v1/auth', auth)
 
 }
 
