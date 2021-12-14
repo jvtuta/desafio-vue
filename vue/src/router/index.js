@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '@/views/Login.vue'
+import Registro from '@/views/Registro.vue'
 import store from '@/store/index'
 
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/registro',
+    name:  'Registro',
+    component: Registro
   }
 ]
 
@@ -30,7 +36,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next)=>{
   const isAuth = store.getters.isAuth
-  if(to.name !== 'Login' && !isAuth) next('/login')
+  //Se a rota não for a de login e registro e o usuário não tiver logado
+  if(to.name !== 'Login' && to.name !== 'Registro' && !isAuth) next('/login')
   else next()
 })
 
