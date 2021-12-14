@@ -51,9 +51,12 @@ export default new Vuex.Store({
       try {
         const response = await( await axios(config)).data
         if(response.auth === true) {
-          setTimeout(()=>commit('setLoading', false), 1500)
+          setTimeout(()=>{
+            commit('setLoading', false)
+            commit('setAuth', true)
+          }, 1500)
           
-          commit('setAuth', true)
+
         } else {
           setTimeout(()=>commit('setLoading', false), 1500)
         }
@@ -97,6 +100,32 @@ export default new Vuex.Store({
       } catch (err) {
         console.error(err)
       }
+    },
+    async registerUser({ commit }, { user_name, password}) {
+      commit('setLoading', true)
+      const data = new URLSearchParams({
+        user_name,
+        password
+      })
+      const config = {
+        url: 'http://localhost:3000/api/v1/register-user',
+        method: 'post',
+        Headers: {
+          'Content-Type': 'application/json',
+          'accept': 'json'
+        },
+        data
+      }
+
+      try {
+        await (axios(config))
+        commit('setLoading', false)
+        commit('setAuth', true)
+        return
+      } catch( err ) {
+        console.error( err )
+      }
+      commit('setLoading', false)
     }
   },
   modules: {

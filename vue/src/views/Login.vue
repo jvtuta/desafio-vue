@@ -1,7 +1,6 @@
 <template>
   <container-auth>
     <b-card title="Login">
-      <template #header></template>
       <div>
         <b-form>
           <b-form-group
@@ -21,7 +20,7 @@
           <b-button-group size="md" col>
             <b-button
               variant="success"
-              @click="controlAuthUser({ user_name, password })"
+              @click="handleButtonAuth()"
             >
               <span v-if="!loading">Login</span>
               <span v-else>
@@ -62,6 +61,14 @@ export default {
   },
   methods: {
     ...mapActions(["controlAuthUser"]),
+    handleButtonAuth() {
+
+      this.controlAuthUser({
+        user_name: this.user_name, 
+        password: this.password
+      })
+      
+    },
     handleButtonRegistro() {
       this.$router.push("/registro");
     },
