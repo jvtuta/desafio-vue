@@ -31,6 +31,6 @@
 
 <div>
     <p>Tabelas</p>
-    <p>1° users(nome) </p>
-    <p>2° urls</p>
+    <p>1° users(nome_user(unique), password) </p>
+    <p>2° urls(url_completa,url_encurtada(unique)), fk_id_user</p>
 </div>
