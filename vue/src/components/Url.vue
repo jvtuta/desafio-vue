@@ -9,7 +9,6 @@ export default {
     props: {
         url: {
             type: Object,
-            required: true
         }
     }
     

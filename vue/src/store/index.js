@@ -61,8 +61,8 @@ export default new Vuex.Store({
           setTimeout(()=>commit('setLoading', false), 1500)
         }
       } catch( err ) {
-        commit('setLoading', false)
         console.error(err)
+        commit('setLoading', false)
       }
     },
     async loadUrls({ commit }) {
@@ -82,7 +82,8 @@ export default new Vuex.Store({
         console.error(err)
       }
     },
-    addUrl({ commit }, url)  {
+    addUrl({ dispatch, commit }, url)  {
+      commit('setLoading', true)
       const data = new URLSearchParams({ url })
       const config = {
         method: 'post',
@@ -96,10 +97,12 @@ export default new Vuex.Store({
 
       try {
         axios(config)
-        commit('setUrls', url)
+        dispatch('loadUrls')
       } catch (err) {
         console.error(err)
+        
       }
+      commit('setLoading', false)
     },
     async registerUser({ commit }, { user_name, password}) {
       commit('setLoading', true)
@@ -119,7 +122,6 @@ export default new Vuex.Store({
 
       try {
         await (axios(config))
-        commit('setLoading', false)
         commit('setAuth', true)
         return
       } catch( err ) {

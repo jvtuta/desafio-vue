@@ -1,42 +1,50 @@
 <template>
-  <div class="url-container">
-      <template v-for="url in getUrls">
-        <url-component  class="url" :key="url.id_url" :url="url"/>
+  <div>
+    <span>Urls cadastradas</span>
+    <div class="url-container">
+      <template v-if="urls.fk_user === getUser.id">
+        <template v-for="url in getUrls">
+          <url-component class="url" :key="url.id_url" :url="url">
+          </url-component>
+        </template>
       </template>
+      <template v-else>
+        <template v-for="url in getUrls">
+          <url-component class="url" :key="url.id_url" :url="url">
+          </url-component>
+        </template>
+      </template>
+    </div>
   </div>
 </template>
 
 <script>
-import Url from './Url.vue'
-import { mapActions, mapGetters } from 'vuex'
+import UrlComponent from "@/components/Url.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
-    compoents: {
-        'url-component' : Url
-    },
-    computed: {
-        ...mapGetters(['getUrls'])
-    },
-    methods: {
-        ...mapActions(['loadUrls'])
-    },
-    created() {
-        this.loadUrls()
-    }
-
-
-}
+  components: {
+    "url-component": UrlComponent,
+  },
+  computed: {
+    ...mapGetters(["getUrls", "getUser"]),
+  },
+  methods: {
+    ...mapActions(["loadUrls"]),
+  },
+  created() {
+    this.loadUrls();
+  },
+};
 </script>
 
 <style scoped>
-
 .url-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .url {
-    width: 40%;
+  width: 40%;
 }
-
 </style>
