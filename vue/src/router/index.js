@@ -7,7 +7,6 @@ import store from '@/store/index'
 
 Vue.use(VueRouter)
 
-const isAuth = store.state.auth
 
 
 const routes = [
@@ -30,6 +29,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next)=>{
+  const isAuth = store.getters.isAuth
   if(to.name !== 'Login' && !isAuth) next('/login')
   else next()
 })

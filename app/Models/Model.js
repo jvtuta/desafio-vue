@@ -28,6 +28,18 @@ export default function Model() {
             res = query('select * from ' + table)
             return this
         },
+
+        find ({columns, comparadores}) {
+
+            res = query(
+                `
+                    select * from ${table}
+                        where ${comparadores[0]} = ${comparadores[1]}
+                `
+            )
+
+            return this
+        },
         
         save (/* Objeto com key(coluna da tabela) e valor(dado))*/ values) {
             if(!table) throw 'table not defined'
@@ -40,13 +52,15 @@ export default function Model() {
             // res = query(`"insert into "`+table+`
             // (${[...Object.keys(values)]})
             // values(${[...val]})`)
-            query(
-                `
-                    insert into 
-                        ${table}(${[...Object.keys(values)]})
-                    values(${[...val]})
-                `
-            )
+           
+                query(
+                    `
+                        insert into 
+                            ${table}(${[...Object.keys(values)]})
+                        values(${[...val]})
+                    `
+                )
+          
             return this
         },
 

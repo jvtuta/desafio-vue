@@ -12,7 +12,7 @@
                     >
 
                         <b-form-input
-                            v-model="nome_usuario"
+                            v-model="user_name"
                         >
 
                         </b-form-input>
@@ -32,7 +32,7 @@
                 </b-form>
             </div>
           <b-button-group size="md" col>
-            <b-button variant="success" @click="controlAuthUser({nome_usuario, password})">
+            <b-button variant="success" @click="controlAuthUser({user_name, password})">
               <span v-if="!loading">Login</span>
               <span v-else>
                 <b-spinner variant="white" small label="Spinning"></b-spinner>
@@ -53,12 +53,17 @@ export default {
 
     data() {
         return {
-            nome_usuario: '',
+            user_name: '',
             password: ''
         }
     },
     computed:{
-      ...mapGetters(['loading'])
+      ...mapGetters(['loading','isAuth'])
+    },
+    watch: {
+      isAuth(authState) {
+        if(authState) this.$router.push('/')
+      }
     },
     methods: {
       ...mapActions(['controlAuthUser']),

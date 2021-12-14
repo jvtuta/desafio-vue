@@ -4,7 +4,7 @@ import bodyParser from "body-parser"
 import cors from 'cors'
 
 const options = {
-    origin: 'http://localhost:8081',
+    origin: 'http://localhost:8080',
     optionsSuccessStatus: 200
 }
 
