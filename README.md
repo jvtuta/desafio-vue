@@ -37,19 +37,20 @@
     Modelagem do banco de dados:
         
 	create table users(
-	id_user int not null auto_increment,
-	user_name varchar(255) not null unique,
-	password char(40) not null,
-	primary key(id_user)
+		id_user int not null auto_increment,
+		user_name varchar(255) not null unique,
+		password char(40) not null,
+		primary key(id_user)
 	);
 
 	create table urls(
-	id_url int not null auto_increment,
-	fk_user int null,
-	url_completa varchar(255) null unique,
-	url_encurtada varchar(100) null unique,
-	foreign key(fk_user) references users(id_user),
-	primary key(id_url)
+		id_url int not null auto_increment,
+		fk_user int null,
+		url_completa varchar(255) null unique,
+		url_encurtada varchar(100) null unique,
+		frequencia int null int,
+		foreign key(fk_user) references users(id_user),
+		primary key(id_url)
 	);    
     </pre>
 </div>
